@@ -45,86 +45,99 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE6EE9C),
       appBar: AppBar(
+        backgroundColor: Color(0xFF9E9D24),
         title: Text(widget.selectedRecipe.name),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black, // Set the color of the border
-                width: 2.0, // Set the width of the border
-              ),
-              borderRadius: BorderRadius.circular(8.0), // Set the border radius to make the corners rounded
-            ),child: Image.asset(widget.selectedRecipe.imagePath, width: 100, height: 100, fit: BoxFit.contain,)),
-            Text(
-              widget.selectedRecipe.name,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Ingredients:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.selectedRecipe.ingredients.map((ingredient) => Text('- $ingredient')).toList(),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Instructions:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(widget.selectedRecipe.instructions),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    addToMyRecipes(context);
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
-                  child: Icon(
-                    isFavorite ? Icons.favorite : Icons.favorite_border,
-                    size: 32,
-                    color: isFavorite ? Colors.red : null,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Set the color of the border
+                    width: 2.0, // Set the width of the border
                   ),
+                  borderRadius: BorderRadius.circular(8.0), // Set the border radius to make the corners rounded
                 ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    addToMealPlanner(context);
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(10)),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: Image.asset(
+                  widget.selectedRecipe.imagePath,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                widget.selectedRecipe.name,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Ingredients:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: widget.selectedRecipe.ingredients.map((ingredient) => Text('- $ingredient')).toList(),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Instructions:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(widget.selectedRecipe.instructions),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      addToMyRecipes(context);
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    child: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      size: 32,
+                      color: isFavorite ? Colors.red : null,
                     ),
                   ),
-                  child: const Text('Add to Meal Planner'),
-                ),
-              ],
-            )
-          ],
+                  SizedBox(width: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      addToMealPlanner(context);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF9E9D24)),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.all(10)),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ),
+                    child: Text('Add to Meal Planner'),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

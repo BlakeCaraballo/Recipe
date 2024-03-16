@@ -49,7 +49,9 @@ class _MyRecipesScreenState extends State<MyRecipesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE6EE9C),
       appBar: AppBar(
+        backgroundColor: Color(0xFF9E9D24),
         title: const Text('My Recipes'),
         centerTitle: true,
       ),

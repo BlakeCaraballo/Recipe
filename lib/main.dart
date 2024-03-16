@@ -37,6 +37,7 @@ class RecipeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF0F4C3),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -63,8 +64,8 @@ class RecipeApp extends StatelessWidget {
             );
           },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          backgroundColor: Colors.blue,
-          child: const Text("Explore", style: TextStyle(color: Colors.white),),
+          backgroundColor: Color(0xFF9E9D24),
+          child: const Text("Explore", style: TextStyle(color: Colors.black),),
         ),
       ),
     );

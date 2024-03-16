@@ -17,7 +17,9 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE6EE9C),
       appBar: AppBar(
+        backgroundColor: Color(0xFF9E9D24),
         title: const Text('Meal Planner'),
         centerTitle: true,
       ),
@@ -51,8 +53,8 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
               _generateGroceryList();
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF9E9D24)),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.all(10)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
@@ -83,6 +85,8 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
   }
 
   void _showAddMealDialog(BuildContext context, int dayIndex) {
+    String mealName = '';
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -93,10 +97,7 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
               hintText: 'Enter meal name',
             ),
             onChanged: (value) {
-              recipeName=value;
-              setState(() {
-                _meals[dayIndex] = [value];
-              });
+              mealName = value.toLowerCase(); // Convert meal name to lowercase
             },
           ),
           actions: <Widget>[
@@ -108,6 +109,16 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
             ),
             TextButton(
               onPressed: () {
+                // Convert the stored meal names to lowercase for comparison
+                List<String> lowercaseMeals = _meals[dayIndex].map((meal) => meal.toLowerCase()).toList();
+
+                if (!lowercaseMeals.contains(mealName)) {
+                  // Add meal to the list if it's not already present
+                  setState(() {
+                    _meals[dayIndex].add(mealName);
+                  });
+                }
+
                 Navigator.of(context).pop();
               },
               child: const Text('Add'),
@@ -117,21 +128,43 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
       },
     );
   }
+  
+void _generateGroceryList() {
+  List<String> allIngredients = [];
 
-  void _generateGroceryList() {
-    List<Recipe> recipes = Provider.of<RecipeProvider>(context, listen: false).recipes;
-    if (recipes.contains(recipeName)) {
-      List<String> ingredientsToAdd = recipes[recipeName]?.ingredients ?? [];
-      GroceryListManager.addIngredients(ingredients: ingredientsToAdd);
+  // Iterate through all the meals planned in the calendar
+  for (List<String> dayMeals in _meals) {
+    // Iterate through each meal in the current day
+    for (String mealName in dayMeals) {
+      // Check if the meal name matches any recipe name
+      Recipe? matchedRecipe = findRecipeByName(mealName);
+      if (matchedRecipe != null) {
+        // Add ingredients from the matched recipe to the grocery list
+        allIngredients.addAll(matchedRecipe.ingredients);
+      }
     }
-
-    // Navigate to the Grocery List screen and pass planned meals as ingredients
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => GroceryListScreen(),
-      ),
-    );
   }
 
+  // Add all ingredients to the grocery list
+  GroceryListManager.addIngredients(ingredients: allIngredients);
+
+  // Navigate to the grocery list screen
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => GroceryListScreen(),
+    ),
+  );
+}
+
+// Helper function to find a recipe by its name
+Recipe? findRecipeByName(String name) {
+  // Iterate through all recipes and check if any recipe matches the given name
+  for (Recipe recipe in RecipeProvider().recipes) {
+    if (recipe.name.toLowerCase() == name.toLowerCase()) {
+      return recipe; // Return the matched recipe
+    }
+  }
+  return null; // Return null if no matching recipe is found
+}
 }
