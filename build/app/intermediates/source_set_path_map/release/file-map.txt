@@ -1,0 +1,12 @@
+com.example.recipe.app-jetified-window-java-1.0.0-beta04-0 C:\Users\blake\.gradle\caches\transforms-3\19ff66f031cb422764b0da25d9d6bdb4\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.recipe.app-jetified-annotation-experimental-1.1.0-1 C:\Users\blake\.gradle\caches\transforms-3\55b58230e55ac19e11de59e32a6117b3\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.recipe.app-core-1.6.0-2 C:\Users\blake\.gradle\caches\transforms-3\bbbbd632898af927049fa4f571ee9e7e\transformed\core-1.6.0\res
+com.example.recipe.app-jetified-window-1.0.0-beta04-3 C:\Users\blake\.gradle\caches\transforms-3\d97cf3ffa6f05f8e8de8b41da1cca67f\transformed\jetified-window-1.0.0-beta04\res
+com.example.recipe.app-main-4 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\android\app\src\main\res
+com.example.recipe.app-release-5 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\android\app\src\release\res
+com.example.recipe.app-pngs-6 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\build\app\generated\res\pngs\release
+com.example.recipe.app-resValues-7 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\build\app\generated\res\resValues\release
+com.example.recipe.app-rs-8 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\build\app\generated\res\rs\release
+com.example.recipe.app-mergeReleaseResources-9 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.example.recipe.app-mergeReleaseResources-10 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\build\app\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.example.recipe.app-merged_res-11 C:\Users\blake\Desktop\mobileapp\Group Project\Recipe-and-Meal-Planning-App\build\app\intermediates\merged_res\release
